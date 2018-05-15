@@ -1,6 +1,6 @@
 // Crash alerter for NZTA Traffic
 
-var   Twit              = require('twit');
+var   Twitter           = require('twitter');
 const commandLineArgs   = require('command-line-args');
 const commandLineUsage  = require('command-line-usage');
 var   cmdline           = require('./cmdline');
@@ -9,15 +9,35 @@ var   _                 = require('lodash');
 const options = commandLineArgs(cmdline.optionDefinitions())
 const usage = commandLineUsage(cmdline.usageDefinitions())
 
-if (options.help) {
+var   twitterCredentials = {}
+
+if (options.help)
+{
   console.log(usage);
-} else {
+}
+else
+{
   if (_.isEmpty(options)) {
-    console.log(usage);
-    throw new Error("No parameters given.");
+    twitterCredentials.apikey       = process.env.TWITTER_CONSUMER_KEY;
+    twitterCredentials.apisecret    = process.env.TWITTER_CONSUMER_SECRET;
+    twitterCredentials.token        = process.env.TWITTER_ACCESS_TOKEN;
+    twitterCredentials.tokensecret  = process.env.TWITTER_ACCESS_KEY;
+    console.log(twitterCredentials);
+    console.log(process.env);
   }
-  //console.log(options);
-  //startStream();
+  else // use the command line args
+  {
+    twitterCredentials.apikey       = options.apikey;
+    twitterCredentials.apisecret    = options.apisecret;
+    twitterCredentials.token        = options.token;
+    twitterCredentials.tokensecret  = options.tokensecret;
+    // If that doesn't work then dump the help to console
+    if ( _.isNil(twitterCredentials.apikey))
+    {
+      console.log(usage);
+      throw new Error("No parameters given.");
+    }
+  }
 }
 
 function followTweets(options){
@@ -27,5 +47,6 @@ function followTweets(options){
     access_token:         options.token,
     access_token_secret:  options.tokensecret
   })
-  var stream = T.stream('statuses/firehose')
+  //var stream = T.stream('statuses/filter', {track: })
+  //stream.on()
 };
