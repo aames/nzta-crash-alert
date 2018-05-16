@@ -1,32 +1,13 @@
 // Crash alerter for NZTA Traffic
 
-const Twitter = require('twitter');
-var    _      = require('lodash');
+var _        = require('lodash');
+var Output   = require('./output.js');
+var Twitter  = require('./twitter.js');
 
-const client = new Twitter({
-  consumer_key:       process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret:    process.env.TWITTER_CONSUMER_SECRET,
-  access_token_key:   process.env.TWITTER_ACCESS_TOKEN,
-  access_token_secret:process.env.TWITTER_ACCESS_KEY
+Twitter.stream('statuses/filter', {
+  // Note: this is the user ID - not the screen name; see http://gettwitterid.com
+  follow: ['996211839888379905']
 });
 
-const start = (callback) => {
-  client.stream('statuses/filter', {track: '@wgncrashalert'}, stream => {
-    stream.on('data', (tweet) => {
-      console.log(`@${tweet.user.screen_name} just said something!`);
-      console.log(tweet)
-    });
-
-    stream.on('error', (error) => {
-      console.log(`*** STREAM ERROR :( ***'`, error);
-      callback(error);
-    });
-
-    callback(undefined);
-  });
-};
-
-start((err) => {
-  if (err) throw err.error;
-  console.log('Server running...');
-});
+// Push data
+Twitter.pipe(Output);
