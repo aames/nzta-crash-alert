@@ -14,8 +14,6 @@
   "author": "Andrew Amesbury",
   "license": "MIT",
   "dependencies": {
-    "command-line-args": "^5.0.2",
-    "command-line-usage": "^5.0.5",
     "lodash": "^4.17.10",
     "twitter": "^1.7.1"
   }
