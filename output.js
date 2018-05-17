@@ -11,7 +11,7 @@ var messageToSend = 'A crash has occurred. ' +
 
 Output._write = function (obj, enc, next) {
     console.log(obj.id, obj.text);
-    if (obj.text.toLower().includes('crash')) {
+    if (obj.text.toLowerCase().includes("crash")) {
       emailClient.sendEmail({
         to: process.env.CRASHALERT_EMAIL_TO,
         from: process.env.CRASHALERT_EMAIL_FROM,
