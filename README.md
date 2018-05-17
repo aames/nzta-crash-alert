@@ -38,3 +38,7 @@ CRASHALERT_EMAIL_TO=""
 _Don't forget to npm install_
 
 `$ node crashalert.js`
+
+## Why is there an express server?
+
+Heroku free (web) dynos need to have a port bind. This serves that purpose.
