@@ -1,15 +1,16 @@
 {
   "name": "crashalert",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Send an alert when crashes occur. Based on the NZTA Wellington Twitter feed.",
   "main": "crashalert.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "keywords": [
     "nzta",
     "crash",
-    "alert"
+    "alert",
+    "email"
   ],
   "author": "Andrew Amesbury",
   "license": "MIT",
