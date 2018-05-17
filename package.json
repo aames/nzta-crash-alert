@@ -1,6 +1,6 @@
 {
   "name": "crashalert",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Send an alert when crashes occur. Based on the NZTA Wellington Twitter feed.",
   "main": "crashalert.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.10",
+    "node-ses": "^2.1.0",
     "stream": "0.0.2",
     "twitter-stream-api": "^0.5.2"
   }
