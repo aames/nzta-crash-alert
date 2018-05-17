@@ -1,8 +1,8 @@
 // Heroku hack
 const express = require('express');
 const app     = express();
-app.get('/', (req, res) => res.send("Running NZTA Crash Alerter."))
-app.listen(80, () => console.log('Running web on port 80.'))
+app.get('/', (req, res) => res.send("Running NZTA Crash Alerter."));
+app.listen(80, () => console.log('Running web on port 80.'));
 
 // Crash alerter for NZTA Wellington Crashes
 
