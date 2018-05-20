@@ -36,5 +36,31 @@ CRASHALERT_EMAIL_TO=""
 ```
 
 _Don't forget to npm install_
+`$ npm install`
 
-`$ node crashalert.js`
+`$ npm start`
+
+## Build and run with Docker
+
+1. First ensure your env vars are set locally.
+
+  `env`
+
+1. Next, substitute them in a dockerfile with `envsubst`.
+
+  `cat Dockerfile | envsubst > DockerfileWithEnvVars`
+1. Build with the substituted dockerfile.
+
+  `docker build -f DockerfileWithEnvVars .`
+
+1. Run the dockerfile.
+
+  `docker run <image>`
+
+If variable substitution worked you should see:
+```
+> crashalert@0.0.3 start /opt/crashalert
+> node server.js
+
+connection success https://stream.twitter.com/1.1/statuses/filter.json?follow=898926264
+```
